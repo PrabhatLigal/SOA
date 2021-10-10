@@ -28,6 +28,22 @@ namespace BirthMicroservice
         {
             services.AddControllers();
 
+            services.AddAuthentication("Bearer")
+                   .AddJwtBearer("Bearer", options =>
+                   {
+                       options.Authority = "https://localhost:5005";
+                       options.TokenValidationParameters = new TokenValidationParameters
+                       {
+                           ValidateAudience = false
+                       };
+                   });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ClientIdPolicy", policy => policy.RequireClaim("client_id", "movieClient", "movies_mvc_client"));
+            });
+
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {

@@ -1,21 +1,39 @@
 {
   "Routes": [
-    //Movie API -- https://localhost:5001/api/movies
+    //Birth API 
     {
-      "DownstreamPathTemplate": "/api/birthcertificate",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": "3001"
         }
       ],
-      "UpstreamPathTemplate": "/birthcertificate",
+      "UpstreamPathTemplate": "/api/birth/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
-      "AuthenticationOptions": {
-        //"AuthenticationProviderKey": "IdentityApiKey",
-        "AllowedScopes": []
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+     }
+      //Health API 
+      ,{
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "3002"
+          }
+        ],
+        "UpstreamPathTemplate": "/api/health/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+        //"AuthenticationOptions": {
+        //  "AuthenticationProviderKey": "IdentityApiKey",
+        //  "AllowedScopes": []
+        //}
       }
-    }
+ 
   ]
 }

@@ -15,18 +15,28 @@ namespace IdentityServer
             {
                    new Client
                    {
-                        ClientId = "movieClient",
+                        ClientId = "birthService",
                         AllowedGrantTypes = GrantTypes.ClientCredentials,
                         ClientSecrets =
                         {
                             new Secret("secret".Sha256())
                         },
-                        AllowedScopes = { "movieAPI" }
+                        AllowedScopes = { "birthAPI" }
                    },
                    new Client
                    {
-                       ClientId = "movies_mvc_client",
-                       ClientName = "Movies MVC Web App",
+                        ClientId = "healthService",
+                        AllowedGrantTypes = GrantTypes.ClientCredentials,
+                        ClientSecrets =
+                        {
+                            new Secret("secret".Sha256())
+                        },
+                        AllowedScopes = { "healthAPI" }
+                   },
+                   new Client
+                   {
+                       ClientId = "mvc_client",
+                       ClientName = "MVC Web App",
                        AllowedGrantTypes = GrantTypes.Hybrid,
                        RequirePkce = false,
                        AllowRememberConsent = false,
@@ -47,8 +57,9 @@ namespace IdentityServer
                            IdentityServerConstants.StandardScopes.OpenId,
                            IdentityServerConstants.StandardScopes.Profile,
                            IdentityServerConstants.StandardScopes.Address,
-                           IdentityServerConstants.StandardScopes.Email,                           
-                           "movieAPI",
+                           IdentityServerConstants.StandardScopes.Email,
+                           "birthService",
+                           "healthService",
                            "roles"
                        }
                    }
@@ -57,7 +68,7 @@ namespace IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
            new ApiScope[]
            {
-               new ApiScope("movieAPI", "Movie API")
+               new ApiScope("birthAPI", "healthAPI")
            };
 
         public static IEnumerable<ApiResource> ApiResources =>

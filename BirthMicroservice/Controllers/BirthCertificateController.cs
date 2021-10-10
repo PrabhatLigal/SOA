@@ -105,7 +105,7 @@ namespace BirthMicroservice.Controllers
         [HttpGet]
         public IEnumerable<BirthCertificate> Get()
         {
-
+            var currentUserId = int.Parse(User?.Identity?.Name);
             return _context.BirthCertificates.ToArray();
         }
     }

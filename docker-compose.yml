@@ -7,9 +7,12 @@ services:
     build:
       context: .
       dockerfile: BirthMicroservice/Dockerfile
+    ports:
+      - "3000:3000"
+      - "3001:3001"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_URLS=http://+:3001
       - ASPNETCORE_Kestrel__Certificates__Default__Password=madison
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev_cert.pfx
 
@@ -26,12 +29,46 @@ services:
       dockerfile: APIGateway/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_URLS=http://+:5011
       - ASPNETCORE_Kestrel__Certificates__Default__Password=madison
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev_cert.pfx
     ports:
-      - "80:80"
+      - "5010:5010"
+      - "5011:5011"
+    volumes:
+      - ./conf.d/https/:/https/
+    networks:
+      - my-network
 
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    container_name: "identity"
+    build:
+      context: .
+      dockerfile: IdentityServer/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:5005
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=madison
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev_cert.pfx
+    volumes:
+      - ./conf.d/https/:/https/
+    networks:
+      - my-network
+
+  healthmicroservice:
+    image: ${DOCKER_REGISTRY-}healthmicroservice
+    container_name: "health"
+    build:
+      context: .
+      dockerfile: HealthMicroservice/Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:3002
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=madison
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev_cert.pfx
     volumes:
       - ./conf.d/https/:/https/
     networks:
@@ -40,3 +77,5 @@ services:
 networks:
   my-network:
     external: true
+
+

@@ -19,9 +19,8 @@
     },
     "HealthMicroservice": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:61889;http://localhost:32692",
+      "applicationUrl": "https://localhost:3002;http://localhost:3003",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
