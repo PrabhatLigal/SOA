@@ -19,9 +19,8 @@
     },
     "BirthMicroservice": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:33288;http://localhost:56456",
+      "applicationUrl": "https://localhost:3000;http://localhost:3001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

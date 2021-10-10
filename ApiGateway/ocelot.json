@@ -1,0 +1,21 @@
+{
+  "Routes": [
+    //Movie API -- https://localhost:5001/api/movies
+    {
+      "DownstreamPathTemplate": "/api/birthcertificate",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "3001"
+        }
+      ],
+      "UpstreamPathTemplate": "/birthcertificate",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "AuthenticationOptions": {
+        //"AuthenticationProviderKey": "IdentityApiKey",
+        "AllowedScopes": []
+      }
+    }
+  ]
+}

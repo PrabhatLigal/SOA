@@ -1,6 +1,15 @@
 # README 
 
 
+| Service     | Port        |
+| ----------- | ----------- |
+| Identity    | 5005        |
+| APIGateway  | 5010        |
+| Birth       | 3000,3001   |
+| Health      | 3002,3003   |
+
+
+
 ## Setup
 
 https://stackoverflow.com/questions/56824859/how-to-run-dockered-asp-net-core-app-generated-by-visual-studio-2019-on-linux-p
