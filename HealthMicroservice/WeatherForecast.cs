@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace APIGateway
+namespace HealthMicroservice
 {
     public class WeatherForecast
     {

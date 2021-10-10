@@ -1,0 +1,39 @@
+{
+  "Routes": [
+    //Birth API 
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "3001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/birth/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+     }
+      //Health API 
+      ,{
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "3002"
+          }
+        ],
+        "UpstreamPathTemplate": "/api/health/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+        //"AuthenticationOptions": {
+        //  "AuthenticationProviderKey": "IdentityApiKey",
+        //  "AllowedScopes": []
+        //}
+      }
+ 
+  ]
+}
